@@ -1,9 +1,15 @@
 (function() {
+  window.MyVideoCarouselConfig = {
+    playButtonColor: '#0000FF',
+    integrationId: '26',
+    numVideos: 5
+  };
+
   let data = [];
   let currentIndex = 0;
 
-  async function fetchData(integrationId) {
-    const supabaseUrl = `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations?id=eq.${integrationId}&select=vid1,vid2,vid3,vid4,vid5`;
+  async function fetchData() {
+    const supabaseUrl = `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations?id=eq.${window.MyVideoCarouselConfig.integrationId}&select=vid1,vid2,vid3,vid4,vid5`;
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpZmN4bHF3ZmZkcnFjd2dnb3FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMyNjY2NTYsImV4cCI6MTk4ODg0MjY1Nn0.lha9G8j7lPLVGv0IU1sAT4SzrJb0I87LfhhvQV8Tc2Q';
     
     const response = await fetch(supabaseUrl, {
@@ -97,7 +103,5 @@
   document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
   document.querySelector('.nav-button-prev').addEventListener('click', playPreviousVideo);
 
-  // Fetch data dynamically based on the integration ID
-  const integrationId = window.MyVideoCarouselConfig.integrationId;
-  fetchData(integrationId);
+  fetchData();
 })();
