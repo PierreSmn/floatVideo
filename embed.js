@@ -117,7 +117,6 @@
         muxPlayer.play();
       });
 
-      muxPlayer.removeEventListener('ended', playNextVideo);
       muxPlayer.addEventListener('ended', playNextVideo);
     }
 
@@ -151,6 +150,7 @@
       loadHTML(`${baseUrl}/index.html`)
     ])
     .then(() => loadScript('https://unpkg.com/@mux/mux-player'))
+    .then(() => loadScript(`${baseUrl}/script.js`))
     .then(() => initializePlayer(integrationId))
     .catch(error => console.error('Error loading resources:', error));
   };
