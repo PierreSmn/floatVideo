@@ -103,6 +103,5 @@
   document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
   document.querySelector('.nav-button-prev').addEventListener('click', playPreviousVideo);
 
-  
   fetchData();
 })();
