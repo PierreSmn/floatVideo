@@ -106,4 +106,4 @@ function initializePlayer(integrationId) {
   fetchData();
 }
 
-window.initializeVideoPlayer = initializePlayer;
+window.initializePlayer = initializePlayer;
