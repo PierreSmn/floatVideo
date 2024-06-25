@@ -1,10 +1,10 @@
 (function() {
   const config = window.MyVideoCarouselConfig;
 
-  function createPortraitContainer() {
-    const container = document.createElement('div');
-    container.id = 'portrait-container';
-    container.innerHTML = `
+  function createElements() {
+    const portraitContainer = document.createElement('div');
+    portraitContainer.id = 'portrait-container';
+    portraitContainer.innerHTML = `
       <img id="portrait-thumbnail" src="" alt="Thumbnail" style="width: 100%; height: 100%; object-fit: cover;">
       <div class="play-button-overlay" id="play-button-overlay">
         <svg viewBox="0 0 24 24">
@@ -19,19 +19,12 @@
         </span>
       </div>
     `;
-    document.body.appendChild(container);
+    document.body.appendChild(portraitContainer);
 
-    const thumbnail = container.querySelector('#portrait-thumbnail');
-    thumbnail.onload = () => {
-      container.style.display = 'block';
-    };
-  }
-
-  function createFullscreenOverlay() {
-    const overlay = document.createElement('div');
-    overlay.className = 'fullscreen-overlay';
-    overlay.id = 'fullscreen-overlay';
-    overlay.innerHTML = `
+    const fullscreenOverlay = document.createElement('div');
+    fullscreenOverlay.className = 'fullscreen-overlay';
+    fullscreenOverlay.id = 'fullscreen-overlay';
+    fullscreenOverlay.innerHTML = `
       <mux-player class="fullscreen-video" playback-id="" metadata-video-title="" metadata-viewer-user-id="user" autoplay></mux-player>
       <div class="close-button" tabindex="0" aria-label="Close dialog" role="button">
         <span class="close-button-icon">
@@ -57,7 +50,129 @@
         </div>
       </div>
     `;
-    document.body.appendChild(overlay);
+    document.body.appendChild(fullscreenOverlay);
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background-color: #000;
+        color: #fff;
+        font-family: Arial, sans-serif;
+      }
+
+      #portrait-container {
+        display: none; /* Hide initially */
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 120px;
+        height: 200px;
+        z-index: 1000;
+        cursor: pointer;
+        border: 2px solid #5E35B1;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: #000;
+      }
+
+      .fullscreen-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .fullscreen-video {
+        height: 100%;
+        width: auto;
+        max-width: 100%;
+      }
+
+      .close-button {
+        position: absolute;
+        top: 16px;
+        left: 16px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .close-button-icon svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      .navigation-buttons {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-button {
+        width: 48px;
+        height: 48px;
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        margin-bottom: 8px;
+        border: 2px solid grey;
+      }
+
+      .nav-button:last-child {
+        margin-bottom: 0;
+      }
+
+      .nav-button-icon svg {
+        fill: white;
+        width: 22px;
+        height: 13px;
+      }
+
+      .play-button-overlay {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
+
+      .play-button-overlay svg {
+        width: 64px;
+        height: 64px;
+        fill: white;
+        opacity: 0.7;
+      }
+
+      .close-portrait-button {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+        z-index: 10;
+      }
+
+      .close-portrait-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+    `;
+    document.head.appendChild(style);
   }
 
   function initializeVideoPlayer() {
@@ -167,8 +282,7 @@
   }
 
   function init() {
-    createPortraitContainer();
-    createFullscreenOverlay();
+    createElements();
     initializeVideoPlayer();
   }
 
