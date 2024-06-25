@@ -79,7 +79,6 @@
       muxPlayer.play();
     });
 
-    muxPlayer.removeEventListener('ended', playNextVideo);
     muxPlayer.addEventListener('ended', playNextVideo);
   }
 
