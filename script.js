@@ -40,11 +40,13 @@ function initializePlayer(integrationId) {
   function initializePortraitPlayer() {
     const portraitContainer = document.getElementById('portrait-container');
     const portraitThumbnail = document.getElementById('portrait-thumbnail');
+    const thumbnailPlaceholder = document.getElementById('thumbnail-placeholder');
     const playButtonOverlay = document.getElementById('play-button-overlay');
     const closePortraitButton = document.getElementById('close-portrait-button');
 
     portraitThumbnail.onload = function() {
-      portraitContainer.style.display = 'block'; // Show the container once the thumbnail is loaded
+      thumbnailPlaceholder.style.display = 'none';
+      portraitThumbnail.style.display = 'block';
     };
 
     portraitThumbnail.src = data[0].thumbnail;
