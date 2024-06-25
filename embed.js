@@ -22,7 +22,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Floating Video Player</title>
-        <link rel="stylesheet" href="https://yourdomain.com/styles.css">
+        <link rel="stylesheet" href="https://float-video.vercel.app/styles.css">
       </head>
       <body>
         <div id="portrait-container">
@@ -68,12 +68,13 @@
         </div>
         <script src="https://unpkg.com/@mux/mux-player"></script>
         <script>
+          ${initializeVideoPlayer.toString()}
           ${fetchData.toString()}
           ${initializePortraitPlayer.toString()}
           ${openOverlay.toString()}
           ${playNextVideo.toString()}
           ${playPreviousVideo.toString()}
-          ${initializeVideoPlayer.toString()}
+          window.initializeVideoPlayer = initializeVideoPlayer;
           initializeVideoPlayer(${JSON.stringify(config)});
         </script>
       </body>
