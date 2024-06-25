@@ -150,15 +150,18 @@
       openOverlay(currentIndex);
     }
 
-    document.querySelector('.close-button').addEventListener('click', () => {
-      const overlay = document.getElementById('fullscreen-overlay');
-      const muxPlayer = overlay.querySelector('mux-player');
-      muxPlayer.pause();
-      overlay.style.display = 'none';
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('.close-button')) {
+        const overlay = document.getElementById('fullscreen-overlay');
+        const muxPlayer = overlay.querySelector('mux-player');
+        muxPlayer.pause();
+        overlay.style.display = 'none';
+      } else if (e.target.closest('.nav-button-next')) {
+        playNextVideo();
+      } else if (e.target.closest('.nav-button-prev')) {
+        playPreviousVideo();
+      }
     });
-
-    document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
-    document.querySelector('.nav-button-prev').addEventListener('click', playPreviousVideo);
 
     // Fetch data dynamically based on the integration ID
     fetchData(config.integrationId);
