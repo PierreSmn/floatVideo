@@ -25,7 +25,6 @@
     thumbnail.onload = () => {
       container.style.display = 'block';
     };
-    thumbnail.src = ''; // The thumbnail URL will be set later when the data is fetched
   }
 
   function createFullscreenOverlay() {
@@ -65,8 +64,8 @@
     let data = [];
     let currentIndex = 0;
 
-    async function fetchData(integrationId) {
-      const supabaseUrl = `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations?id=eq.${integrationId}&select=vid1,vid2,vid3,vid4,vid5`;
+    async function fetchData() {
+      const supabaseUrl = `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations?id=eq.${config.integrationId}&select=vid1,vid2,vid3,vid4,vid5`;
       const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpZmN4bHF3ZmZkcnFjd2dnb3FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMyNjY2NTYsImV4cCI6MTk4ODg0MjY1Nn0.lha9G8j7lPLVGv0IU1sAT4SzrJb0I87LfhhvQV8Tc2Q';
       
       const response = await fetch(supabaseUrl, {
@@ -164,7 +163,7 @@
     });
 
     // Fetch data dynamically based on the integration ID
-    fetchData(config.integrationId);
+    fetchData();
   }
 
   function init() {
