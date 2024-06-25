@@ -36,8 +36,8 @@
             <span class="close-portrait-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0002 10.586L4.70718 3.29297L3.29297 4.70718L10.586 12.0002L3.29297 19.2933L4.70718 20.7075L12.0002 13.4145L19.2933 20.7075L20.7075 19.2933L13.4145 12.0002L20.7075 4.70723L19.2933 3.29302L12.0002 10.586Z" fill="white"></path>
-              </svg>
-            </span>
+            </svg>
+          </span>
           </div>
         </div>
         <div class="fullscreen-overlay" id="fullscreen-overlay">
@@ -46,8 +46,8 @@
             <span class="close-button-icon">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.0002 10.586L4.70718 3.29297L3.29297 4.70718L10.586 12.0002L3.29297 19.2933L4.70718 20.7075L12.0002 13.4145L19.2933 20.7075L20.7075 19.2933L13.4145 12.0002L20.7075 4.70723L19.2933 3.29302L12.0002 10.586Z" fill="white"></path>
-              </svg>
-            </span>
+            </svg>
+          </span>
           </div>
           <div class="navigation-buttons">
             <div class="nav-button nav-button-prev" tabindex="0" aria-label="Previous video" role="button">
