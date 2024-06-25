@@ -1,4 +1,10 @@
 (function() {
+  window.MyVideoCarouselConfig = {
+    playButtonColor: '#0000FF',
+    integrationId: '26',
+    numVideos: 5
+  };
+
   let data = [];
   let currentIndex = 0;
 
@@ -97,8 +103,7 @@
   document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
   document.querySelector('.nav-button-prev').addEventListener('click', playPreviousVideo);
 
-  window.initializeVideoPlayer = function(config) {
-    window.MyVideoCarouselConfig = config;
-    fetchData(config.integrationId);
-  };
+  // Fetch data dynamically based on the integration ID
+  const integrationId = window.MyVideoCarouselConfig.integrationId;
+  fetchData(integrationId);
 })();
