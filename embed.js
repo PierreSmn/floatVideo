@@ -25,7 +25,7 @@
     fullscreenOverlay.className = 'fullscreen-overlay';
     fullscreenOverlay.id = 'fullscreen-overlay';
     fullscreenOverlay.innerHTML = `
-      <mux-player class="fullscreen-video" playback-id="" metadata-video-title="" metadata-viewer-user-id="user"></mux-player>
+      <mux-player class="fullscreen-video" playback-id="" metadata-video-title="" metadata-viewer-user-id="user" autoplay></mux-player>
       <div class="close-button" tabindex="0" aria-label="Close dialog" role="button">
         <span class="close-button-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -244,9 +244,7 @@
       muxPlayer.setAttribute('metadata-video-title', video.title);
       muxPlayer.setAttribute('metadata-viewer-user-id', 'user');
 
-      muxPlayer.load();
-
-      muxPlayer.addEventListener('loadeddata', function () {
+      muxPlayer.addEventListener('loadeddata', function() {
         muxPlayer.play();
       });
 
