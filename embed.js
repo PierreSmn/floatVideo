@@ -42,8 +42,14 @@
       loadHTML(`${baseUrl}/index.html`)
     ])
     .then(() => loadScript('https://unpkg.com/@mux/mux-player'))
+    .then(() => loadScript(`${baseUrl}/script.js`))
     .then(() => {
-      window.initializePlayer(integrationId);
+      // Ensure initializePlayer is available in global scope
+      if (typeof window.initializePlayer === 'function') {
+        window.initializePlayer(integrationId);
+      } else {
+        console.error('initializePlayer function not found');
+      }
     })
     .catch(error => console.error('Error loading resources:', error));
   };
