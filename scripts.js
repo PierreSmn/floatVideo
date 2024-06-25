@@ -1,10 +1,4 @@
 (function() {
-  window.MyVideoCarouselConfig = {
-    playButtonColor: '#0000FF',
-    integrationId: '26',
-    numVideos: 5
-  };
-
   let data = [];
   let currentIndex = 0;
 
