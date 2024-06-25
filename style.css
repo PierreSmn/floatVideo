@@ -6,7 +6,6 @@ body, html {
 }
 
 #portrait-container {
-  display: none; /* Hide initially */
   position: fixed;
   bottom: 20px;
   right: 20px;
