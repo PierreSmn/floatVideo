@@ -64,8 +64,11 @@ function initializePlayer(integrationId) {
   function openOverlay(index) {
     currentIndex = index;
     const overlay = document.getElementById('fullscreen-overlay');
+    const portraitContainer = document.getElementById('portrait-container');
     const muxPlayer = overlay.querySelector('mux-player');
     const video = data[currentIndex];
+
+    portraitContainer.style.display = 'none'; // Hide portrait container
 
     overlay.style.display = 'flex';
 
@@ -95,9 +98,12 @@ function initializePlayer(integrationId) {
 
   document.querySelector('.close-button').addEventListener('click', () => {
     const overlay = document.getElementById('fullscreen-overlay');
+    const portraitContainer = document.getElementById('portrait-container');
     const muxPlayer = overlay.querySelector('mux-player');
+    
     muxPlayer.pause();
     overlay.style.display = 'none';
+    portraitContainer.style.display = 'block'; // Show portrait container
   });
 
   document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
