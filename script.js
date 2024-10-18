@@ -1,5 +1,4 @@
-
-  (function() {
+(function() {
   const baseUrl = 'https://float-video.vercel.app';
 
   // Function to dynamically load CSS
@@ -25,22 +24,39 @@
     });
   }
 
-  // Function to dynamically load HTML content
-  function loadHTML(url) {
-    return fetch(url)
-      .then(response => response.text())
-      .then(html => {
-        const container = document.createElement('div');
-        container.innerHTML = html;
-        document.body.appendChild(container);
-      });
+  // Include HTML content directly
+  function loadHTMLContent() {
+    const htmlContent = `
+      <!-- Your HTML content here -->
+      <div id="portrait-container">
+        <img id="portrait-thumbnail" src="" alt="Thumbnail" style="display: none;">
+        <div id="thumbnail-placeholder">Loading...</div>
+        <div id="play-button-overlay"></div>
+        <button id="close-portrait-button">Close</button>
+      </div>
+      <div id="fullscreen-overlay" style="display: none;">
+        <button class="close-button">Close</button>
+        <button class="nav-button-prev">Previous</button>
+        <mux-player
+          stream-type="on-demand"
+          playback-id=""
+          metadata-video-title=""
+          metadata-viewer-user-id="">
+        </mux-player>
+        <button class="nav-button-next">Next</button>
+      </div>
+    `;
+    const container = document.createElement('div');
+    container.innerHTML = htmlContent;
+    document.body.appendChild(container);
+    return Promise.resolve();
   }
 
   // Load all resources and initialize player
   window.initializeVideoPlayer = function(integrationId) {
     Promise.all([
       loadCSS(`${baseUrl}/style.css`),
-      loadHTML(`${baseUrl}/index.html`)
+      loadHTMLContent()
     ])
     .then(() => loadScript('https://unpkg.com/@mux/mux-player'))
     .then(() => {
@@ -49,6 +65,7 @@
     })
     .catch(error => console.error('Error loading resources:', error));
   };
+
 
   function initializePlayer(integrationId) {
     window.MyVideoCarouselConfig = {
