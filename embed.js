@@ -10,6 +10,7 @@
   };
 
   // Set your integration ID here
+      window.MyVideoWidgetConfig.integrationId = "26";
 
 
   const supabaseUrl = 'https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations';
