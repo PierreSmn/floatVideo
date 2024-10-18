@@ -109,8 +109,7 @@ function initializePlayer(integrationId) {
     portraitContainer.style.display = 'block'; // Show portrait container
   });
 
-  document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
-  document.querySelector('.nav-button-prev').addEventListener('click', playPreviousVideo);
+
 
   fetchData();
 }
