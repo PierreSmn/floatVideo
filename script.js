@@ -22,9 +22,9 @@ function initializePlayer(integrationId) {
     });
     
     const integrationData = await response.json();
-    const videoId = integrationData[0];
+    const videoIds = [integrationData[0].vid1, integrationData[0].vid2, integrationData[0].vid3, integrationData[0].vid4, integrationData[0].vid5].slice(0, window.MyVideoCarouselConfig.numVideos);
     
-    const videosResponse = await fetch(`https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/hostedSubs?id=in.${videoId.vid1}&select=*`, {
+    const videosResponse = await fetch(`https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/hostedSubs?id=eq.vid1&select=*`, {
       method: 'GET',
       headers: {
         'apikey': supabaseKey,
