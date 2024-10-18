@@ -3,7 +3,7 @@ function initializePlayer(integrationId) {
   window.MyVideoCarouselConfig = {
     playButtonColor: '#0000FF',
     integrationId: integrationId,
-    numVideos: 5
+    numVideos: 1
   };
 
   let data = [];
