@@ -22,9 +22,9 @@ function initializePlayer(integrationId) {
     });
     
     const integrationData = await response.json();
-    const videoId = integrationData[0].vid1;
+    const videoId = integrationData[0];
     
-    const videosResponse = await fetch(`https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/hostedSubs?id=in.videoId.id&select=*`, {
+    const videosResponse = await fetch(`https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/hostedSubs?id=in.${videoId.id}&select=*`, {
       method: 'GET',
       headers: {
         'apikey': supabaseKey,
