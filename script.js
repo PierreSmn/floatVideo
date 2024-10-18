@@ -9,7 +9,7 @@ function initializePlayer(integrationId) {
   let currentIndex = 0;
 
   async function fetchData() {
-    const supabaseUrl = `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations?id=eq.${integrationId}&select=vid1`;
+    const supabaseUrl = `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations?id=eq.${integrationId}&select=vid1,vid2,vid3,vid4,vid5`;
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpZmN4bHF3ZmZkcnFjd2dnb3FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMyNjY2NTYsImV4cCI6MTk4ODg0MjY1Nn0.lha9G8j7lPLVGv0IU1sAT4SzrJb0I87LfhhvQV8Tc2Q';
     
     const response = await fetch(supabaseUrl, {
@@ -24,7 +24,7 @@ function initializePlayer(integrationId) {
     const integrationData = await response.json();
     const videoIds = [integrationData[0].vid1, integrationData[0].vid2, integrationData[0].vid3, integrationData[0].vid4, integrationData[0].vid5].slice(0, window.MyVideoCarouselConfig.numVideos);
     
-    const videosResponse = await fetch(`https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/hostedSubs?id=eq.vid1&select=*`, {
+    const videosResponse = await fetch(`https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/hostedSubs?id=in.(${videoIds.join(',')})&select=*`, {
       method: 'GET',
       headers: {
         'apikey': supabaseKey,
