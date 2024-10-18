@@ -1,3 +1,4 @@
+ 
 (function() {
   const baseUrl = 'https://float-video.vercel.app';
 
@@ -27,7 +28,6 @@
   // Include HTML content directly
   function loadHTMLContent() {
     const htmlContent = `
-      <!-- Your HTML content here -->
       <div id="portrait-container">
         <img id="portrait-thumbnail" src="" alt="Thumbnail" style="display: none;">
         <div id="thumbnail-placeholder">Loading...</div>
@@ -66,7 +66,7 @@
     .catch(error => console.error('Error loading resources:', error));
   };
 
-
+  // Define the initializePlayer function
   function initializePlayer(integrationId) {
     window.MyVideoCarouselConfig = {
       playButtonColor: '#0000FF',
@@ -78,9 +78,9 @@
     let currentIndex = 0;
 
     async function fetchData() {
-      const supabaseUrl = `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/integrations?id=eq.${integrationId}&select=vid1,vid2,vid3,vid4,vid5`;
+      const supabaseUrl = `https://your-supabase-url.supabase.co/rest/v1/integrations?id=eq.${integrationId}&select=vid1,vid2,vid3,vid4,vid5`;
       const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpZmN4bHF3ZmZkcnFjd2dnb3FiIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzMyNjY2NTYsImV4cCI6MTk4ODg0MjY1Nn0.lha9G8j7lPLVGv0IU1sAT4SzrJb0I87LfhhvQV8Tc2Q';
-      
+
       const response = await fetch(supabaseUrl, {
         method: 'GET',
         headers: {
@@ -89,7 +89,7 @@
           'Content-Type': 'application/json'
         }
       });
-      
+
       const integrationData = await response.json();
       const videoIds = [
         integrationData[0].vid1,
@@ -98,9 +98,9 @@
         integrationData[0].vid4,
         integrationData[0].vid5
       ].slice(0, window.MyVideoCarouselConfig.numVideos);
-      
+
       const videosResponse = await fetch(
-        `https://pifcxlqwffdrqcwggoqb.supabase.co/rest/v1/hostedSubs?id=in.(${videoIds.join(',')})&select=*`, {
+        `https://your-supabase-url.supabase.co/rest/v1/hostedSubs?id=in.(${videoIds.join(',')})&select=*`, {
         method: 'GET',
         headers: {
           'apikey': supabaseKey,
@@ -108,7 +108,7 @@
           'Content-Type': 'application/json'
         }
       });
-      
+
       data = await videosResponse.json();
       initializePortraitPlayer();
     }
@@ -174,23 +174,21 @@
       openOverlay(currentIndex);
     }
 
-    document.querySelector('.close-button').addEventListener('click', () => {
-      const overlay = document.getElementById('fullscreen-overlay');
-      const portraitContainer = document.getElementById('portrait-container');
-      const muxPlayer = overlay.querySelector('mux-player');
-      
-      muxPlayer.pause();
-      overlay.style.display = 'none';
-      portraitContainer.style.display = 'block'; // Show portrait container
-    });
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.close-button').addEventListener('click', () => {
+        const overlay = document.getElementById('fullscreen-overlay');
+        const portraitContainer = document.getElementById('portrait-container');
+        const muxPlayer = overlay.querySelector('mux-player');
 
-    document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
-    document.querySelector('.nav-button-prev').addEventListener('click', playPreviousVideo);
+        muxPlayer.pause();
+        overlay.style.display = 'none';
+        portraitContainer.style.display = 'block'; // Show portrait container
+      });
+
+      document.querySelector('.nav-button-next').addEventListener('click', playNextVideo);
+      document.querySelector('.nav-button-prev').addEventListener('click', playPreviousVideo);
+    });
 
     fetchData();
   }
-
-  // Optionally, you can expose initializePlayer globally if needed
-  // window.initializePlayer = initializePlayer;
-
 })();
